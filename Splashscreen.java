@@ -1,68 +1,79 @@
-package com.example.fall.detection;
+package com.example.falldetect;
 
 
 import android.app.Activity;
+
 import android.content.Intent;
+
 import android.os.Bundle;
 
-public class SplashScreenActivity extends Activity {
-	private static int splashTime = 1000;
+import android.view.Menu;
 
-	public void onCreate(Bundle bundle) {
-		super.onCreate(bundle);
-		setContentView(R.layout.activity_splash);
+import android.view.Window;
 
-		Thread splashThread = new Thread() {
+
+public class Activity_Splash extends Activity
+ {
+
+	private static int splashTime = 10000;
+
+	
+	@Override
+
+	protected void onCreate(Bundle savedInstanceState)
+ {
+		super.onCreate(savedInstanceState);
+
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+	
+	setContentView(R.layout.activity_splash);
+		
+
+
+		Thread splashThread = new Thread() 
+{
 			public void run() {
-				try {
-					synchronized (this) {
-						wait(splashTime);
-					}
+				
+                       try {
 
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} finally {
-					startActivity(new Intent(SplashScreenActivity.this,
-							MainActivity.class));
-					finish();
-				}
+					
+                     synchronized (this) {
+						
+                      wait(splashTime);
+		
 			}
+
+		
+		} catch (InterruptedException e)
+ {
+					// TODO Auto-generated catch block
+
+					e.printStackTrace();
+			
+	}  finally {
+			
+		startActivity(new Intent(Activity_Splash.this,user_Login.class));
+	
+
+				finish();
+				}
+
+		
+	}
 		};
 		splashThread.start();
 	}
-}
-package com.example.fall.detection;
 
+	
+@Override
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
+	public boolean onCreateOptionsMenu(Menu menu)
+ {
+		// Inflate the menu; this adds items to the action bar if it is present.
 
-public class SplashScreenActivity extends Activity {
-	private static int splashTime = 1000;
+		getMenuInflater().inflate(R.menu.main, menu);
+	
+	return true;
 
-	public void onCreate(Bundle bundle) {
-		super.onCreate(bundle);
-		setContentView(R.layout.activity_splash);
-
-		Thread splashThread = new Thread() {
-			public void run() {
-				try {
-					synchronized (this) {
-						wait(splashTime);
-					}
-
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} finally {
-					startActivity(new Intent(SplashScreenActivity.this,
-							MainActivity.class));
-					finish();
-				}
-			}
-		};
-		splashThread.start();
 	}
 }
